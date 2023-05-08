@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="components/loader.js"></script>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+    </script>
+</head>
+<body>
+	<br />
+    import React, { Component } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import QRCodeScanner from 'react-native-qrcode-scanner';
+
+class QRScanner extends Component {
+  onSuccess = (e) => {
+    alert(`Scanned QR code: ${e.data}`);
+  }
+
+  render() {
+    return (
+      <QRCodeScanner
+        onRead={this.onSuccess}
+        topContent={<Text style={styles.centerText}>Scan the QR code to open the app.</Text>}
+        bottomContent={<Text style={styles.centerText}>Align the QR code within the frame to scan.</Text>}
+      />
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  centerText: {
+    flex: 1,
+    fontSize: 18,
+    padding: 32,
+    color: '#777',
+    textAlign: 'center',
+  },
+});
+
+export default QRScanner;
+</body>
+</html>
